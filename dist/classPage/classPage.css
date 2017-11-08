@@ -1,0 +1,47 @@
+.class-panel {
+  background-color: #fff; }
+  .class-panel .class-left {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    color: #777;
+    background-color: #f9f9f9;
+    z-index: 2;
+    text-align: center;
+    overflow: auto; }
+    .class-panel .class-left .class-item-1 {
+      font-size: 13px;
+      padding: 10px 0; }
+      .class-panel .class-left .class-item-1.active {
+        background-color: #fff; }
+  .class-panel .class-right {
+    position: absolute;
+    background-color: #fff;
+    text-align: center;
+    z-index: 1;
+    height: 100vh;
+    overflow: auto; }
+    .class-panel .class-right * {
+      background-color: #fff; }
+    .class-panel .class-right img {
+      width: 100%; }
+    .class-panel .class-right .brand-panel .brand-panel-title {
+      border-bottom: solid 1px #000;
+      display: inline-block;
+      padding: 5px 30px; }
+    .class-panel .class-right .brand-panel .brand-item {
+      font-size: 13px;
+      padding: 10px; }
+    .class-panel .class-right .class-2-panel .class-2-panel-title {
+      border-bottom: solid 1px #000;
+      display: inline-block;
+      padding: 5px 30px; }
+    .class-panel .class-right .class-2-panel .class-2-item {
+      padding: 10px;
+      font-size: 13px;
+      min-height: 100px; }
+      .class-panel .class-right .class-2-panel .class-2-item img {
+        width: 100%;
+        min-width: 100%;
+        min-height: 83px;
+        background-color: #f9f9f9; }

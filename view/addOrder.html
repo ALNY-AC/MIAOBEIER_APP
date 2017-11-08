@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>提交订单</title>
+
+        <!---->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/addOrder/addOrder.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+
+    </head>
+
+    <body>
+
+        <!--15.提交订单-->
+
+        <div id="orderApp">
+            <div class="top">
+                <span class="iconfont icon-fanhui back" onclick=""></span>
+                <span>提交订单</span>
+            </div>
+            <div class="toptwo">
+                <span class="iconfont icon-shizi"></span>
+                <span>新增收货地址</span>
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+            <div class="topthree">
+                <span class="dingdan">订单1</span>
+                <span class="dress">品牌商上海发货</span>
+            </div>
+
+            <div class="price_list clearfix">
+                <ul class="mui-table-view clearfix">
+                    <li class="mui-table-view-cell" v-for="(item,index) in body.list.goodsArr">
+                        <div class="person_picture" :style="'background-image: url(http://120.78.162.200'+item.head_img+');'">
+                            <!--<img src=""/>-->
+                        </div>
+                        <div class="right-font" id="four_font_color">
+                            <span class="fist">{{item.title}}</span>
+                            <br>
+                            <!--<sapn class="fist">小童长袖T恤套头打底衫</sapn><br>-->
+                            <sapn class="jiage">{{item.price}}</sapn>
+                            <sapn class="amount">1</sapn>
+                        </div>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <span>发货方式</span>
+                        <span class="right">快递 (包邮) : {{body.list.orderInfo.money}}元</span>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <span>订单总计</span>
+                        <span class="right" id="price"></span>
+                    </li>
+                </ul>
+            </div>
+            <!--优惠减免-->
+            <!-- <div class="youhui">
+			<span class="youhui_font">优惠减免</span>
+		</div>
+		<div class="youhuiquan">
+			<span class="youhuiquan_font">优惠券
+				<span class="shiyong">适用优惠券商品159元</span>
+			</span>
+			<span class="mui-icon mui-icon-arrowright" id="use_icon"></span>
+			<span class="use_youhuiquan">使用优惠券</span>
+		</div> -->
+            <!--选择支付方式-->
+            <div class="youhui">
+                <span class="youhui_font">选择支付方式</span>
+            </div>
+            <div class="price_list clearfix">
+                <ul class="mui-table-view clearfix">
+                    <li class="mui-table-view-cell">
+                        <img src="images/zhifubaozhifu.png" alt="" class="zhifubao">
+                        <span>支付宝支付</span>
+                        <!--<span class="mui-icon mui-icon-close"></span>-->
+                        <!--点击转换-->
+                        <!--<div class="mui-content">-->
+                        <div class="mui-card">
+                            <form class="mui-input-group">
+                                <div class="mui-input-row mui-checkbox">
+                                    <input name="checkbox" value="Item 1" type="checkbox">
+                                </div>
+                            </form>
+                        </div>
+                        <!--点击转换-->
+                    </li>
+                </ul>
+            </div>
+
+            <div class="price_list clearfix">
+                <ul class="mui-table-view clearfix">
+                    <li class="mui-table-view-cell">
+                        <img src="images/weixin.png" alt="" class="zhifubao">
+                        <span>微信支付</span>
+                        <!--<span class="mui-icon mui-icon-close"></span>-->
+                        <!--点击转换-->
+                        <!--<div class="mui-content">-->
+                        <div class="mui-card">
+                            <form class="mui-input-group">
+                                <div class="mui-input-row mui-checkbox">
+                                    <input name="checkbox" value="Item 1" type="checkbox">
+                                </div>
+                            </form>
+                        </div>
+                        <!--点击转换-->
+                    </li>
+                </ul>
+            </div>
+            <!--底部-->
+            <div class="price_list" id="bottom">
+                <ul class="mui-table-view clearfix">
+                    <li class="mui-table-view-cell">
+                        <span>总计：</span>
+                        <div class="gotozhifu">
+                            <span>去付款</span>
+                        </div>
+                        <span class="amount_price">
+                            {{sumMoney}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="vendor/DataBuilder/js/LogTool.js" type="text/javascript" charset="utf-8"></script>
+        <script src="vendor/DataBuilder/js/DateBuilderClass.js" type="text/javascript" charset="utf-8"></script>
+        <script src="vendor/DataBuilder/js/DataListClass.js" type="text/javascript" charset="utf-8"></script>
+        <!---->
+
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+
+        <!--dist-->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            $(document).on("click", ".back", function() {
+                localStorage.order_goods_id = null;
+                mui.back();
+            })
+            var bottom = new Vue({
+                el: "#bottom",
+                data: {
+                    sumMoney: 0
+                }
+            })
+            orderApp = dateBuilder.init({
+                url: "UserV0_1/Order/getOne",
+                type: "post",
+                el: "#orderApp",
+                data: {
+                    order_id: localStorage.order_id,
+                    "token": localStorage.token
+                },
+                successFun: function(app, message) {
+                    console.log(message)
+                    Vue.set(app.body, 'list', message);
+                }
+            });
+
+            orderApp.update();
+
+            $(document).on('click', '.toptwo', function() {
+                mui.openWindow({
+                    url: "newaddress.html",
+                    id: "gtrhth",
+                    createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                    show: {
+                        autoShow: true, //页面loaded事件发生后自动显示，默认为true
+                    },
+                    waiting: {
+                        autoShow: true, //自动显示等待框，默认为true
+                        title: '正在加载...', //等待对话框上显示的提示内容
+                    }
+                })
+            })
+        </script>
+    </body>
+
+</html>

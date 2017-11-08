@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>登录</title>
+        <!---->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/login/login.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/login/login_phone.css" />
+
+        <style>
+            .oa-contact-cell.mui-table .mui-table-cell {
+                padding: 11px 0;
+                vertical-align: middle;
+            }
+            
+            .oa-contact-cell {
+                position: relative;
+                margin: -11px 0;
+            }
+            
+            .oa-contact-avatar {
+                width: 75px;
+            }
+            
+            .oa-contact-avatar img {
+                border-radius: 50%;
+            }
+            
+            .oa-contact-content {
+                width: 100%;
+            }
+            
+            .oa-contact-name {
+                margin-right: 20px;
+            }
+            
+            .oa-contact-name,
+            oa-contact-position {
+                float: left;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .mui-row.mui-fullscreen > [class*="mui-col-"] {
+                height: 100%;
+            }
+            
+            .mui-col-xs-3,
+            .mui-control-content {
+                overflow-y: auto;
+                height: 100%;
+            }
+            
+            .mui-segmented-control .mui-control-item {
+                line-height: 50px;
+                width: 100%;
+            }
+            
+            .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+                background-color: #fff;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!--12 登陆-->
+        <div id="loginLoginApp">
+
+            <div class="login-icon">
+                <div class="login-icon-item">
+                    <img src="../dist/login/m.png">
+                </div>
+                <div class="login-icon-item">
+                    <img src="../dist/login/miaobeier.png">
+                </div>
+                <div class="login-icon-item show-login-input">
+                    <span class="login_phone">手机号登陆</span>
+                    <span class="iconfont icon-xiangyoujiantou"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loginApp" style="display: none;">
+
+            <div class="nav-login">
+                <span class="iconfont icon-fanhui show-login-home"></span>
+                <span class="nav-title">登录</span>
+            </div>
+
+            <div class="mui-content login-box" style="padding: 10px;">
+
+                <div class="mui-row">
+
+                    <div class="mui-col-xs-12">
+
+                        <div class="title">验证手机号登录
+                            <span class="code"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mui-row">
+
+                    <div class="mui-col-xs-12">
+                        <input type="text" class="my-input" data-input-password="3" autocomplete="false" placeholder="请输入手机号码" id="phone">
+                    </div>
+
+                </div>
+                <div class="mui-row">
+                    <div class="mui-col-xs-7">
+                        <input type="text" class="my-input" data-input-password="3" placeholder="请输入验证码" id="yanzhengma">
+                    </div>
+
+                    <div class="mui-col-xs-5" style="text-align: right; padding: 0 5px;">
+                        <button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary my-btn-black" id="getCode">获取验证码</button>
+                    </div>
+
+                </div>
+                <div class="mui-row">
+
+                    <div class="mui-col-xs-12" style="text-align: center;">
+                        <button type="button" class="mui-btn mui-btn-royal my-btn-black" id="login_denglu">登陆</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/login/login.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            $(document).on('click', '.show-login-input', function() {
+                $('#loginLoginApp').hide();
+                $('#loginApp').show();
+            })
+            $(document).on('click', '.show-login-home', function() {
+                $('#loginLoginApp').show();
+                $('#loginApp').hide();
+            })
+        </script>
+    </body>
+
+</html>

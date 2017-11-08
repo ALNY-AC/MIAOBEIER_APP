@@ -1,0 +1,95 @@
+// <div class="class-panel">
+// <div class="class-left">
+//     <div class="class-item-1 active">分类1</div>
+//     <div class="class-item-1">分类1</div>
+//     <div class="class-item-1">分类1</div>
+//     <div class="class-item-1">分类1</div>
+// </div>
+// <div class="class-right">
+//     <img src="dist/img/l1.jpg" alt="">
+//     <div class="mui-row">
+//         <!-- 品牌 -->
+//         <div class="brand-panel">
+//             <div class="brand-panel-title">热门品牌</div>
+//             <div class="brand-item">
+//                 <img src="" alt="">
+//                 <span></span>
+//             </div>
+//         </div>
+//     </div>
+//     <div class="mui-row">
+//         <div class="class-2-panel">
+//             <div class="class-2-panel-title">分类</div>
+//             <div class="class-2-item">
+//                 <img src="" alt="">
+//                 <span></span>
+//             </div>
+//         </div>
+//     </div>
+// </div>
+// </div>
+.class-panel {
+    background-color: #fff;
+    
+    .class-left {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        color: #777;
+        background-color: #f9f9f9;
+        z-index: 2;
+        text-align: center;
+        overflow: auto;
+        .class-item-1 {
+                font-size:13px;
+                padding: 10px 0;
+            &.active {
+                background-color: #fff;
+            }
+        }
+    }
+    .class-right {
+        position: absolute;
+        background-color: #fff;
+        text-align: center;
+        z-index: 1;
+        height: 100vh;
+        overflow: auto;
+        * {
+            background-color: #fff;
+        }
+        img {
+            width: 100%;
+           
+        }
+        .brand-panel {
+            .brand-panel-title {
+                border-bottom: solid 1px #000;
+                display: inline-block;
+                padding: 5px 30px;
+            }
+            .brand-item {
+                font-size:13px;
+                padding: 10px;
+            }
+        }
+        .class-2-panel {
+            .class-2-panel-title {
+                border-bottom: solid 1px #000;
+                display: inline-block;
+                padding: 5px 30px;
+            }
+            .class-2-item {
+                padding: 10px;
+                font-size:13px;
+                min-height: 100px;
+                img {
+                    width: 100%;
+                    min-width: 100%;
+                    min-height: 83px;
+                    background-color: #f9f9f9;
+                }
+            }
+        }
+    }
+}

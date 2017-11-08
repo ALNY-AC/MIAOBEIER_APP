@@ -1,0 +1,51 @@
+#tabbar {
+    width: 100%;
+    height: 700px;
+}
+
+.xyjt {
+    margin-top: 19%;
+    margin-left: 10%;
+}
+
+body {
+    background-image: url(beijing1.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+.login_top {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background: black;
+}
+
+.denglu {
+    color: white;
+    font-size: 20px;
+}
+
+#bottom_color {
+    background: black;
+    border-top: 1px solid white;
+}
+
+.show-login {
+    font-size: 20px;
+}
+
+.login-icon {
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.login-icon-item {
+    text-align: center;
+    padding: 10px 0;
+}

@@ -1,0 +1,53 @@
+.back {
+    float: left;
+    margin-left: 3%;
+}
+
+body {
+    background: #f2f3f5;
+}
+
+.shoucang_wai {
+    width: 100%;
+    height: 80px;
+    background: white;
+    margin-bottom: 2%;
+}
+
+.shoucang_touxiang {
+    width: 30%;
+    height: 80px;
+    float: left;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shoucang_wenzi {
+    width: 70%;
+    height: 80px;
+    float: right;
+}
+
+.touxiang {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.shoucang_touxiang img {
+    width: 100%;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.shoucang_wenzi2 {
+    padding: 2% 2% 1% 3%;
+}
+
+.shoucang_title {
+    font-size: 10px;
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>商品详情</title>
+        <!---->
+        <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/goodsInfo/goodInfo.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+
+        <style type="text/css">
+            #gaibeijing3 {
+                background-color: #ff0;
+                padding-top: 20px;
+            }
+            
+            #gaibeijing3 * {
+                max-width: 100%;
+            }
+            
+            body {
+                background-color: #ddd;
+                padding-bottom: 150px;
+                padding-top: 50px;
+            }
+            
+            #xinxin {
+                line-height: 60px;
+                float: right;
+                margin-right: 3%;
+            }
+            
+            .goods-content {
+                word-break: break-all;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!--22商品详情-->
+
+        <div>
+
+            <div class="mui-navbar-inner mui-bar mui-bar-nav">
+                <button type="button" class="mui-left mui-action-back mui-btn mui-btn-link mui-btn-nav mui-pull-left">
+                    <span class="mui-icon mui-icon-left-nav" style="color: #fff;"></span>
+                </button>
+                <h1 class="mui-center mui-title">详情</h1>
+                <span class="mui-icon iconfont icon-xin mui-pull-right" onclick="sc()"></span>
+                <!--sc-->
+            </div>
+
+            <div id="goodsApp">
+
+                <div class="head-max-ing">
+                    <img :src="getHeadImg()" />
+                </div>
+
+                <div class="goods-title-box">
+                    <div class="goods-title">
+                        {{body.list.title}}
+                    </div>
+
+                    <div class="goods-price">
+                        <span class="a_price">{{body.list.price}}￥</span>
+                        <span class="str_price">价格：
+                            <strike>{{body.list.str_price}}￥ </strike>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="brandApp" style="padding:3% 3% 2% 8%;">
+                <span class="head-imng">
+                    <img src="../dist/img/xwyg.jpg" style="width:70px;height:70px;">
+                    <br>
+                    <span style="margin-left:-10%;">MIAOBEIER</span>
+                </span>
+
+                <span class="title">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil voluptas delectus enim culpa quidem blanditiis praesentium reiciendis alias repellat quasi voluptatibus, sequi consequatur, magnam veniam quas sunt corrupti suscipit optio?
+                </span>
+
+            </div>
+
+            <div id="goodsInfoApp" v-html='body.list.content' style="background:white;overflow: hidden; word-break: break-all;">
+                <div class="goods-content">
+                    <div class="mui-content">
+                        <div class="mui-col-xs-12">
+                            <div v-if="body.list">
+                                {{body.list.content}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="promise">
+
+                <div class="promise-head ">
+
+                    <div class="line">
+                        <div class="title ">品牌承诺</div>
+                    </div>
+
+                </div>
+
+                <div class="mui-content promise-body ">
+                    <div class="mui-row ">
+                        <div class="mui-col-xs-3 ">
+                            <span class="iconfont icon-zhengpinbaozheng "></span>
+                            <span class="tubiao_font ">正品保证</span>
+                        </div>
+                        <div class="mui-col-xs-3 ">
+                            <span class="iconfont icon-qitianwuliyou "></span>
+                            <span class="tubiao_font ">7天无理由退换</span>
+                        </div>
+                        <div class="mui-col-xs-3">
+                            <span class="iconfont icon-butie2 "></span>
+                            <span class="tubiao_font ">超时发货补贴</span>
+                        </div>
+                        <div class="mui-col-xs-3">
+                            <span class="iconfont icon-picc "></span>
+                            <span class="tubiao_font ">PICC承保</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mui-content tool">
+                <div class="mui-row ">
+                    <div class="mui-col-xs-3 ">
+                        <li class="mui-table-view-cell" id="goods">
+                            <span class="iconfont icon-gouwudai1"></span>
+                        </li>
+                    </div>
+                    <div class="mui-col-xs-3 ">
+                        <li class="mui-table-view-cell" id="chat">
+                            <span class="iconfont icon-momentmessage"></span>
+                        </li>
+                    </div>
+                    <div class="mui-col-xs-6 ">
+                        <li class="mui-table-view-cell" id="addGoods" onclick="addShop()">
+                            加入购物袋
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <!--dist-->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/goodsInfo/goodsInfo.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            mui.plusReady(function(event) {
+                event.preventDefault();
+                var self = plus.webview.currentWebview();
+                var current = '';
+                var styles = {
+                    top: '0',
+                    bottom: '51px'
+                };
+                var tabsConfig = {
+                    main: {
+                        url: '1.html',
+                        styles: styles,
+                        default: true
+                    },
+                    message: {
+                        url: '2.html',
+                        styles: styles
+                    },
+                    contact: {
+                        url: '3.html',
+                        styles: styles
+                    },
+                    setting: {
+                        url: '2.html',
+                        styles: styles
+                    }
+                };
+                var tabs = {};
+                for(id in tabsConfig) {
+                    tabs[id] = plus.webview.create(tabsConfig[id].url, id, tabsConfig[id].styles);
+                    if(tabsConfig[id]['default']) {
+                        self.append(tabs[id]);
+                        current = id;
+                    }
+                }
+                mui('#bar').on('tap', 'a', function(e) {
+                    if(current == this.dataset.id) {
+                        mui.fire(tabs[current], 'scroll2top');
+                        return;
+                    }
+                    tabs[this.dataset.id].show();
+                    tabs[current].hide();
+                    current = this.dataset.id;
+                });
+
+            });
+
+            // mui("body").on("tap ", "a", function () {
+            //  document.location.href = this.href;
+            // });
+
+            function sc() {
+                //收藏
+
+                $.post(config.getGroup() + "Collect/toggle", {
+                    "goods_id": localStorage.goods_id,
+                    "token": localStorage.token
+                }, function(msg) {
+                    console.log(msg);
+                    var jj = JSON.parse(msg);
+                    console.log(jj);
+                    if(jj.result == "success") {
+
+                        if(jj.message == "add") {
+                            $("#xinxin").toggleClass("fa-heart-o");
+                            $("#xinxin").toggleClass("fa-heart");
+                            mui.toast("已收藏~");
+                        }
+                        if(jj.message == "remove") {
+                            mui.toast("删除收藏~");
+                            $("#xinxin").toggleClass("fa-heart");
+                            $("#xinxin").toggleClass("fa-heart-o");
+                        }
+
+                    }
+                    if(jj.result == "error") {
+                        mui.toast("收藏失败!");
+                    }
+                })
+
+            }
+
+            function addShop() {
+                //购物车
+                //              /ShoppingBag/addBag
+
+                $.post(config.getGroup() + "ShoppingBag/addBag", {
+                    "num": 1, //商品数量
+                    "goods_id": localStorage.goods_id, //商品id
+                    "token": localStorage.token
+                }, function(msg) {
+                    console.log(msg);
+                    var jj = JSON.parse(msg);
+                    console.log(jj);
+                    if(jj.result == "success") {
+
+                        mui.toast("已加入购物车~");
+                    }
+                    if(jj.result == "error") {
+                        mui.toast("添加失败!");
+                    }
+                })
+
+            }
+
+            /*
+
+                    // 点击新变颜色
+                    var times = 0;
+                    var xin = document.getElementById("xinxin");
+
+                    function change(xin) {
+                        xin.style.color = times % 2 == 0 ? 'red' : 'white';
+                        times++;
+                        if (times % 2 == 0) {
+                            console.log("白色")
+                        } else {
+                            console.log("红色")
+                        }
+                    }
+
+                    */
+            // 点击返回符号返回
+            $(document).on('click', '.back', function() {
+                mui.back();
+            })
+            // 点击 “加入购物车” 提示
+        </script>
+
+    </body>
+
+</html>

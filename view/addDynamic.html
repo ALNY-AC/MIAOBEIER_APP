@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <title>发布动态</title>
+        <!---->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/addDynamic/fabudongtai.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/addDynamic/five.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+
+        <style>
+            .title {
+                /*margin: 20px 15px 10px;*/
+                color: #6d6d72;
+                font-size: 15px;
+            }
+            
+            .oa-contact-cell.mui-table .mui-table-cell {
+                padding: 11px 0;
+                vertical-align: middle;
+            }
+            
+            .oa-contact-cell {
+                position: relative;
+                margin: -11px 0;
+            }
+            
+            .oa-contact-avatar {
+                width: 75px;
+            }
+            
+            .oa-contact-avatar img {
+                border-radius: 50%;
+            }
+            
+            .oa-contact-content {
+                width: 100%;
+            }
+            
+            .oa-contact-name {
+                margin-right: 20px;
+            }
+            
+            .oa-contact-name,
+            oa-contact-position {
+                float: left;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .mui-row.mui-fullscreen > [class*="mui-col-"] {
+                height: 100%;
+            }
+            
+            .mui-col-xs-3,
+            .mui-control-content {
+                overflow-y: auto;
+                height: 100%;
+            }
+            
+            .mui-segmented-control .mui-control-item {
+                line-height: 50px;
+                width: 100%;
+            }
+            
+            .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+                background-color: #fff;
+            }
+            
+            #result {
+                margin-top: 20px;
+            }
+            
+            .img_list {
+                margin: 0px;
+                padding: 0px;
+                overflow: hidden;
+            }
+            
+            .img_list ul,
+            .img_list ul li {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            .img_list ul li {
+                float: left;
+                list-style: none;
+                position: relative;
+                margin: 5px 0px 0px 5px;
+            }
+            
+            .img_list ul li span {
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                width: 16px;
+                height: 16px;
+                opacity: 0.6;
+                filter: alpha(opacity=60);
+                margin: 0 0 0 2px;
+                vertical-align: top;
+                background: url('/Themes/Images/panel_tools.png') no-repeat -16px 0px;
+            }
+            
+            .img_list ul li img {
+                width: 80px;
+                height: 80px;
+                cursor: pointer;
+                position: relative;
+                z-index: 0;
+            }
+            
+            .img_list ul li .input {
+                width: 80px;
+                height: 80px;
+                cursor: pointer;
+                position: relative;
+                left: -100px;
+                vertical-align: top;
+                margin: 0px;
+                padding: 0px;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="fabu_top">
+            <span class="iconfont icon-fanhui fabu_back" onbeforeunload="return"></span>
+            <span class="fabu_font1">发布动态</span>
+            <span class="fabu_font2" id="fabu">发布</span>
+        </div>
+
+        <div class="fabu_fenxiang">
+            <div class="fabu_bao1">
+                <span class="fabu_xinde">分享购物晒单与使用心得</span>
+                <textarea id="wenben" class="fabu_neirong" type="file"></textarea>
+
+                <div id="result" align="center"></div>
+                <span class="fabu_zishu">/800</span>
+                <span class="fabu_zishu">0</span>
+                <div class="fabu_line"></div>
+                <div class="fabu_jiahao">
+                    <span class="iconfont icon-addpictures text-center" style="font-size: 80px;color: gray"></span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="mui-table-view" id="fabu_tianjiashangpin">
+            <li class="mui-table-view-cell five_one">
+                <a class="mui-navigate-right" id="tianjiashangpin">添加商品</a>
+            </li>
+        </ul>
+
+        <!---->
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            mui.init({
+                swipeBack: true //启用右滑关闭功能
+
+            });
+
+            $(document).on('click', '.fabu_back', function() {
+                mui.back();
+
+            })
+            $(document).on("click", "#fabu", function() {
+                fabu();
+            })
+            //      Dynamic
+            var imglist = [];
+            var fabu = function() {
+                var wenben = $("#wenben").val();
+                $.post(config.getUrl() + "/UserV0_1/Dynamic/add", {
+                    token: localStorage.token,
+                    content: wenben
+                }, function(msg) {
+                    msg = JSON.parse(msg)
+                    console.log(msg);
+                    if(msg.result == "success") {
+                        mui.back();
+                    } else {
+                        mui.toast("添加失败，请检查网络连接！");
+                    }
+
+                })
+
+            }
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,60 @@
+.show-login-home {
+    position: relative;
+    padding-left: 10px;
+    z-index: 9;
+}
+
+.nav-login {
+    position: absolute;
+    width: 100%;
+    line-height: 50px;
+    background-color: #000;
+    color: #fff;
+    font-size: 17px;
+}
+
+.nav-title {
+    font-size: 17px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.title {
+    font-size: 17px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.my-btn-black {
+    background: black;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+#getCode {
+    width: 100%;
+    line-height: 2;
+    border-radius: 3px;
+}
+
+#login_denglu {
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.login-box {
+    height: 100vh;
+}
+
+input.my-input {
+    border: solid 1px #000;
+}

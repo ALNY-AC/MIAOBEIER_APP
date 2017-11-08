@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>我的收藏</title>
+
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="wodeshoucang.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+    </head>
+
+    <body>
+        <header class="mui-bar mui-bar-nav">
+
+            <h1 class="mui-title">我的收藏</h1>
+            <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left ">
+                <span class="mui-icon mui-icon-left-nav" style=""></span>
+            </button>
+
+        </header>
+        <!--21我的收藏-->
+        <div id="userCollApp" class="mui-content">
+
+            <div class="shoucang_wai" @longtap='del(index)' @click='showInfo(index)' v-for="(item,index) in list">
+                <div class="shoucang_touxiang">
+                    <div class="touxiang">
+                        <img :src="getImg(index)" alt="asd">
+                    </div>
+                </div>
+                <div class="shoucang_wenzi">
+                    <div class="shoucang_wenzi2">
+                        <span class="shoucang_title">{{item.title}}{{item.goods_id}}</span>
+                        <br>
+                        <span>￥{{item.price}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!---->
+
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            mui.init({
+                gestureConfig: {
+                    tap: true, //默认为true
+                    doubletap: true, //默认为false
+                    longtap: true, //默认为false
+                    swipe: true, //默认为true
+                    drag: true, //默认为true
+                    hold: true, //默认为false，不监听
+                    release: false //默认为false，不监听
+                }
+            });
+            $(document).on('click', '.back', function() {
+                mui.back()
+            })
+
+            var userCollApp = new Vue({
+                el: '#userCollApp',
+                data: {
+                    list: []
+                },
+                methods: {
+
+                    update: function() {
+                        var _this = this;
+
+                        $.post(config.getUrl() + '/UserV0_1/Collect/showList', {
+                            token: localStorage.token
+                        }, function(result) {
+                            result = JSON.parse(result);
+                            console.log(result);
+
+                            if(typeof(result.message) == 'object') {
+                                if(result.result == 'success') {
+                                    _this.list = result.message;
+                                    return;
+                                }
+                            }
+                            _this.list = [];
+
+                        })
+
+                    },
+                    del: function(index) {
+                        var _this = this;
+
+                        var goods_id = this.list[index].goods_id;
+
+                        mui.confirm('是否删除收藏？', function(e) {
+                            if(e.index == 1) {
+
+                                $.post(config.getUrl() + "/UserV0_1/Collect/toggle", {
+                                    "goods_id": goods_id,
+                                    "token": localStorage.token
+                                }, function(msg) {
+                                    _this.update();
+                                    mui.toast("已删除~");
+                                })
+                            }
+
+                        });
+
+                    },
+                    showInfo: function(index) {
+                        localStorage.goods_id = this.list[index].goods_id;
+                        mui.openWindow({
+                            url: "goodsInfo.html",
+                            id: "goodsInfo",
+                            createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                            show: {
+                                autoShow: true, //页面loaded事件发生后自动显示，默认为true
+                                //aniShow:animationType,//页面显示动画，默认为”slide-in-right“；
+                                //duration:animationTime//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+                            },
+                            waiting: {
+                                autoShow: true, //自动显示等待框，默认为true
+                                title: '正在加载...', //等待对话框上显示的提示内容
+                                options: {
+                                    //width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+                                    // height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+                                }
+                            }
+                        })
+
+                    },
+                    getImg: function(index) {
+
+                        return config.getIp() + this.list[index].head_img;
+                        // return config.getIp() + this.list[index].head_img;
+
+                    }
+
+                }
+            })
+            userCollApp.update();
+        </script>
+    </body>
+
+</html>

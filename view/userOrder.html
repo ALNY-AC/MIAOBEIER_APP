@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>我的订单</title>
+
+        <!--<link rel="stylesheet" type="text/css" href="../dist/userOrder/mui.css" />-->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/userOrder/userOrder.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/mui-app.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+
+        <style>
+            .mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+                background-color: #000;
+                color: #fff;
+            }
+            
+            .sum-money {
+                text-align: right;
+                padding: 20px;
+                border: solid 1px #ddd;
+                border-width: 1px 0;
+            }
+            
+            .tool {
+                text-align: right;
+                padding: 10px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <header id="header" class="mui-bar mui-bar-nav">
+
+            <h1 class="mui-title">我的订单</h1>
+            <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left ">
+                <span class="mui-icon mui-icon-left-nav" style=""></span>
+            </button>
+
+        </header>
+
+        <div class="mui-content" id="userOrderApp" style="display: none;">
+            <div id="slider" class="mui-slider">
+                <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                    <a class="mui-control-item " href="#userOrderAppAll">
+                        全部
+                    </a>
+                    <a class="mui-control-item" href="#userOrderApp1">
+                        待付款
+                    </a>
+                    <a class="mui-control-item" href="#userOrderApp2">
+                        待发货
+                    </a>
+                    <a class="mui-control-item" href="#userOrderApp3">
+                        待收货
+                    </a>
+                    <a class="mui-control-item" href="#userOrderApp4">
+                        交易成功
+                    </a>
+                </div>
+
+                <div class="mui-slider-group">
+                    <div id="userOrderAppAll" class="mui-slider-item mui-control-content">
+
+                        <div class="mui-content">
+                            <div class="daifukuan_twobao">
+
+                                <div class="daifukuan_one">
+                                    <div class="daifukuan_zuo">
+                                        <div class="mui-input-row mui-checkbox">
+                                            <label style="line-height: 55px;">&nbsp;</label>
+                                            <input type="checkbox" style="line-height: 55px;">
+                                        </div>
+                                    </div>
+                                    <div class="daifukuan_you">
+                                        <span class="daifukuan_shijian">2017-10-17 11:23:36</span>
+                                    </div>
+                                </div>
+
+                                <div class="daifukuan_two">
+                                    <div class="zuobian">
+                                        <div class="zuobiantouxiang">
+                                            <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="youbian">
+                                        <span class="youbianzi">秋冬服装</span>
+                                        <br>
+                                        <div class="youxiazi">
+                                            <span class="">￥200</span>
+                                            <span class="shuliangyou">×1</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="daifukuan_twobao" :key='item.order_id' v-for="(item,index) in getList(0)">
+
+                                <div class="daifukuan_one">
+                                    <div class="daifukuan_zuo">
+                                        <div class="mui-input-row mui-checkbox">
+                                            <label style="line-height: 55px;">&nbsp;</label>
+                                            <input type="checkbox" style="line-height: 55px;">
+                                        </div>
+                                    </div>
+                                    <div class="daifukuan_you">
+                                        <span class="daifukuan_shijian">{{getTime(item.order_info.add_time)}}</span>
+                                    </div>
+                                </div>
+
+                                <!--goods  -->
+                                <div class="daifukuan_two" v-for="(goods_item,index) in  item.goods_info">
+                                    <div class="zuobian">
+                                        <div class="zuobiantouxiang">
+                                            <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="youbian">
+                                        <span class="youbianzi">{{goods_item.title}}</span>
+                                        <br>
+                                        <div class="youxiazi">
+                                            <span class="">￥{{goods_item.price}}</span>
+                                            <span class="shuliangyou">×{{goods_item.order_info.num}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sum-money">
+                                    <div class="span">总计：￥{{item.order_info.money}}</div>
+                                </div>
+
+                                <!-- end -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="userOrderApp1" class="mui-slider-item mui-control-content ">
+                        <div class="mui-content">
+                            <div class="daifukuan_twobao" :key='item.order_id' v-for="(item,index) in getList(1)">
+
+                                <div class="daifukuan_one">
+                                    <div class="daifukuan_zuo">
+                                        <div class="mui-input-row mui-checkbox">
+                                            <label style="line-height: 55px;">&nbsp;</label>
+                                            <input type="checkbox" style="line-height: 55px;">
+                                        </div>
+                                    </div>
+                                    <div class="daifukuan_you">
+                                        <span class="daifukuan_shijian">{{getTime(item.order_info.add_time)}}</span>
+                                    </div>
+                                </div>
+
+                                <!--goods  -->
+                                <div class="daifukuan_two" v-for="(goods_item,index) in  item.goods_info">
+                                    <div class="zuobian">
+                                        <div class="zuobiantouxiang">
+                                            <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="youbian">
+                                        <span class="youbianzi">{{goods_item.title}}</span>
+                                        <br>
+                                        <div class="youxiazi">
+                                            <span class="">￥{{goods_item.price}}</span>
+                                            <span class="shuliangyou">×{{goods_item.order_info.num}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sum-money">
+                                    <div class="span">总计：￥{{item.order_info.money}}</div>
+                                </div>
+
+                                <div class="tool">
+                                    <button type="button" class="mui-btn mui-btn-outlined">取消</button>
+                                    <button type="button" class="mui-btn mui-btn-outlined">去付款</button>
+                                </div>
+                                <!-- end -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="userOrderApp2" class="mui-slider-item mui-control-content ">
+                        <div class="mui-content">
+                            <div class="mui-content">
+                                <div class="daifukuan_twobao" :key='item.order_id' v-for="(item,index) in getList(2)">
+
+                                    <div class="daifukuan_one">
+                                        <div class="daifukuan_zuo">
+                                            <div class="mui-input-row mui-checkbox">
+                                                <label style="line-height: 55px;">&nbsp;</label>
+                                                <input type="checkbox" style="line-height: 55px;">
+                                            </div>
+                                        </div>
+                                        <div class="daifukuan_you">
+                                            <span class="daifukuan_shijian">{{getTime(item.order_info.add_time)}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!--goods  -->
+                                    <div class="daifukuan_two" v-for="(goods_item,index) in  item.goods_info">
+                                        <div class="zuobian">
+                                            <div class="zuobiantouxiang">
+                                                <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="youbian">
+                                            <span class="youbianzi">{{goods_item.title}}</span>
+                                            <br>
+                                            <div class="youxiazi">
+                                                <span class="">￥{{goods_item.price}}</span>
+                                                <span class="shuliangyou">×{{goods_item.order_info.num}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sum-money">
+                                        <div class="span">总计：￥{{item.order_info.money}}</div>
+                                    </div>
+
+                                    <!-- end -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="userOrderApp3" class="mui-slider-item mui-control-content ">
+                        <div class="mui-content">
+                            <div class="mui-content">
+                                <div class="daifukuan_twobao" :key='item.order_id' v-for="(item,index) in getList(3)">
+
+                                    <div class="daifukuan_one">
+                                        <div class="daifukuan_zuo">
+                                            <div class="mui-input-row mui-checkbox">
+                                                <label style="line-height: 55px;">&nbsp;</label>
+                                                <input type="checkbox" style="line-height: 55px;">
+                                            </div>
+                                        </div>
+                                        <div class="daifukuan_you">
+                                            <span class="daifukuan_shijian">{{getTime(item.order_info.add_time)}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!--goods  -->
+                                    <div class="daifukuan_two" v-for="(goods_item,index) in  item.goods_info">
+                                        <div class="zuobian">
+                                            <div class="zuobiantouxiang">
+                                                <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="youbian">
+                                            <span class="youbianzi">{{goods_item.title}}</span>
+                                            <br>
+                                            <div class="youxiazi">
+                                                <span class="">￥{{goods_item.price}}</span>
+                                                <span class="shuliangyou">×{{goods_item.order_info.num}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sum-money">
+                                        <div class="span">总计：￥{{item.order_info.money}}</div>
+                                    </div>
+
+                                    <!-- end -->
+
+                                    <div class="tool">
+                                        <button type="button" class="mui-btn mui-btn-outlined">确认收货</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="userOrderApp4" class="mui-slider-item mui-control-content ">
+                        <div class="mui-content">
+                            <div class="mui-content">
+                                <div class="daifukuan_twobao" :key='item.order_id' v-for="(item,index) in getList(4)">
+
+                                    <div class="daifukuan_one">
+                                        <div class="daifukuan_zuo">
+                                            <div class="mui-input-row mui-checkbox">
+                                                <label style="line-height: 55px;">&nbsp;</label>
+                                                <input type="checkbox" style="line-height: 55px;">
+                                            </div>
+                                        </div>
+                                        <div class="daifukuan_you">
+                                            <span class="daifukuan_shijian">{{getTime(item.order_info.add_time)}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!--goods  -->
+                                    <div class="daifukuan_two" v-for="(goods_item,index) in  item.goods_info">
+                                        <div class="zuobian">
+                                            <div class="zuobiantouxiang">
+                                                <img src="../dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="youbian">
+                                            <span class="youbianzi">{{goods_item.title}}</span>
+                                            <br>
+                                            <div class="youxiazi">
+                                                <span class="">￥{{goods_item.price}}</span>
+                                                <span class="shuliangyou">×{{goods_item.order_info.num}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sum-money">
+                                        <div class="span">总计：￥{{item.order_info.money}}</div>
+                                    </div>
+
+                                    <!-- end -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <!--dist-->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/userOrder/userOrder.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var test = window.location.href;
+            var index = test.split("?")[1];
+
+            $('#userOrderApp' + index).addClass('mui-active');
+            $('[href="#userOrderApp' + index + '"]').addClass('mui-active');
+            $('#userOrderApp').show();
+        </script>
+
+    </body>
+
+</html>

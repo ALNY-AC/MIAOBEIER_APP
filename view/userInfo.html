@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="x-rim-auto-match" content="none">
+        <title>个人信息</title>
+        <!---->
+
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+        
+        <style type="text/css">
+            .update {
+                font-style: normal;
+                color: #999999;
+                margin-right: -25px;
+                font-size: 15px
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>
+            </button>
+            <h1 class="mui-center mui-title">个人信息</h1>
+        </div>
+        <div class="mui-content" id="userConfigApp">
+            <ul class="mui-table-view mui-table-view-chevron">
+                <li class="mui-table-view-cell">
+                    <a href="#about" class="mui-navigate-right">头像 <i class="mui-pull-right update">未设置</i></a>
+                </li>
+                <li class="mui-table-view-cell" onclick="ow('userConfig/userNameEdit.html')">
+                    <a href="#about" class="mui-navigate-right">昵称 <i class="mui-pull-right update">{{info.user_name}}</i></a>
+                </li>
+                <li class="mui-table-view-cell" onclick="ow('userConfig/userInofEdit.html')">
+                    <a href="#about" class="mui-navigate-right">个性签名 <i class="mui-pull-right update">{{info.user_info}}</i></a>
+                </li>
+                <li class="mui-table-view-cell">ID
+                    <span class="mui-pull-right update">{{info.user_id}}</span>
+                </li>
+                <li class="mui-table-view-cell">联系客服
+                    <span class="mui-pull-right update">{{info.consume_count}}￥</span>
+                </li>
+            </ul>
+        </div>
+
+        <!---->
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            mui.init({
+                swipeBack: true, //启用右滑关闭功能
+            });
+            window.addEventListener('refresh', function(event) {
+                alert("7468745245")
+            });
+            $(document).on('click', '.backicon', function() {
+                mui.back();
+            })
+
+            var userConfigApp = new Vue({
+                el: "#userConfigApp",
+                data: {
+                    info: {
+
+                    }
+                },
+                methods: {
+                    update: function() {
+                        var _this = this
+
+                        $.post(config.getUrl() + "/UserV0_1/User/getInfo", {
+                            token: localStorage.token,
+
+                        }, function(data) {
+                            console.log(data);
+                            data = JSON.parse(data);
+                            console.log(data);
+                            _this.info = data.message;
+
+                        })
+                    }
+                }
+            })
+            userConfigApp.update();
+        </script>
+
+    </body>
+
+</html>

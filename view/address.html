@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>收货地址管理</title>
+        <!-- <link href="css/mui.css" rel="stylesheet" /> -->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/mui-app.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+        <style>
+            .addAddress {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                padding: 0 10px;
+                z-index: 99;
+            }
+            
+            #addressApp {
+                padding-bottom: 100px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="addressApp" style="display:none">
+
+            <div class="mui-navbar-inner mui-bar mui-bar-nav">
+                <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                    <span class="mui-icon mui-icon-left-nav"></span>
+                </button>
+                <h1 class="mui-center mui-title">收货地址</h1>
+            </div>
+
+            <div class="mui-content">
+
+                <div class="mui-card" v-for='(item,index) in list' @longtap='del(index)'>
+                    <div class="mui-card-header">
+                        <span class="name">{{item.people}}</span>
+                        <span class="telephone">{{item.hone}}</span>
+                    </div>
+                    <div class="mui-card-content">
+                    </div>
+                    <div class="mui-card-footer">
+
+                        <div class="tubiao">
+
+                            <div v-if='item.is_default == 1'>
+                                <span class="mui-badge mui-badge-danger mui-badge-inverted">默认地址</span>
+                            </div>
+                            <div v-else>
+                                <button type="button" @click='editDefault(index)' class="mui-btn mui-btn-outlined">设为默认</button>
+                            </div>
+
+                        </div>
+                        {{item.content}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="addAddress">
+                <button type="button" class="mui-btn mui-btn-danger mui-btn-block" @click='addAddress()'>添加新地址</button>
+            </div>
+        </div>
+
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.js"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.material.js"></script>
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <!--dist-->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            mui.init({
+                gestureConfig: {
+                    // tap: true, //默认为true
+                    // doubletap: true, //默认为false
+                    longtap: true, //默认为false
+                    // swipe: true, //默认为true
+                    // drag: true, //默认为true
+                    // hold: true,//默认为false，不监听
+                    // release: false//默认为false，不监听
+                }
+            });
+            (function($) {
+                //阻尼系数
+                var deceleration = mui.os.ios ? 0.003 : 0.0009;
+
+                $.ready(function() {
+
+                    //循环初始化所有下拉刷新，上拉加载。
+
+                    $.each($('#addressApp'), function(index, pullRefreshEl) {
+                        $(pullRefreshEl).pullToRefresh({
+                            down: {
+                                callback: function() {
+                                    var self = this;
+                                    console.log(index);
+                                    console.log(pullRefreshEl);
+                                    self.endPullDownToRefresh();
+                                    addressApp.update();
+
+                                }
+                            }
+                        });
+                    });
+
+                });
+            })(mui);
+
+            $(document).on("click", ".addAddress", function() {
+                mui.openWindow({
+                    url: "newaddress.html",
+                    id: "gtrhth",
+                    createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                    show: {
+                        autoShow: true, //页面loaded事件发生后自动显示，默认为true
+                    },
+                    waiting: {
+                        autoShow: true, //自动显示等待框，默认为true
+                        title: '正在加载...', //等待对话框上显示的提示内容
+                    }
+                })
+            });
+            var addressApp = new Vue({
+                el: '#addressApp',
+                data: {
+                    list: []
+                },
+                methods: {
+                    update: function(f) {
+
+                        var _this = this;
+                        $.get(config.getGroup() + 'Address/getList', {
+                            token: localStorage.token,
+                        }, function(result) {
+                            result = JSON.parse(result);
+                            if(result.result == 'success') {
+                                _this.list = result.message
+                            } else {
+                                _this.list = [];
+                            }
+                            if(f != null) {
+                                f();
+                            }
+
+                        });
+                    },
+                    del: function(index) {
+
+                        var goods_id = this.list[index].goods_id;
+                        var bag_id = this.list[index].bag_id;
+                        var _this = this;
+
+                        mui.confirm('是否删除收货地址？', function(e) {
+                            if(e.index == 1) {
+                                $.post(config.getGroup() + 'address/del', {
+                                    token: localStorage.token,
+                                    address_id: _this.list[index].address_id
+                                }, function(result) {
+
+                                    result = JSON.parse(result);
+                                    if(result.result == 'success') {
+                                        mui.toast('删除成功！');
+                                        _this.update();
+                                    } else {
+                                        mui.toast('删除失败！');
+
+                                    }
+
+                                });
+                            }
+
+                        });
+
+                    },
+                    edit: function() {
+
+                        mui.openWindow({
+                            url: "userOrder.html?daifukaun",
+                            id: "quanbutiaozhuan2",
+                            extras: {
+                                name: 'mui',
+                                version: '0.5.8'
+                            },
+                            createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                            show: {
+                                autoShow: true, //页面loaded事件发生后自动显示，默认为true
+                            },
+                            waiting: {
+                                autoShow: true, //自动显示等待框，默认为true
+                                title: '正在加载...', //等待对话框上显示的提示内容
+                            }
+                        })
+
+                    },
+                    addAddress: function() {
+
+                    },
+                    editDefault: function(index) {
+
+                        var _this = this;
+                        var item = this.list[index];
+
+                        item.is_default = 1;
+
+                        var _this = this;
+                        $.post(config.getGroup() + 'address/editDefault', {
+                            token: localStorage.token,
+                            address_id: item.address_id
+                        }, function(result) {
+                            result = JSON.parse(result);
+                            if(result.result == 'success') {
+                                mui.toast('设置成功!')
+                                _this.update();
+                            } else {
+                                //提示错误
+                                mui.toast('设置失败!')
+                            }
+                        });
+                    }
+                }
+            })
+            addressApp.update(function() {
+
+                $('#addressApp').show();
+
+            });
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,67 @@
+.head{
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    .head-lg-img{
+        img{
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+    .head-info{
+        position:relative;
+        top: -50px;
+        .head-img{
+            text-align: center;
+            img{
+                width: 100px;
+                height: 100px;
+
+            }
+        }
+        .brand-title{
+            font-size:20px;
+            font-weight: bold;
+            position: absolute;
+            display: inline-block;
+            bottom: 30px;
+        }
+      
+    }
+    .brand-info{
+        position:relative;
+        top: -30px;
+        padding: 0 10px;
+        color:#777;
+    }
+}
+
+.top-tool
+{
+    background-color: #ffffff;
+    width: 100%;
+    padding:10px;
+    text-align: center;
+    border-bottom:solid 1px #ddd;
+    .tool-item:first-child{
+        border-right:solid 1px #ddd;
+    }
+}
+.mui-card{
+    border:none;
+    box-shadow: none;
+    *{
+        border:none;
+        box-shadow: none;
+    }
+    .mui-card-header {
+        padding-bottom: 100%;
+        
+   }
+ 
+}
+.mui-card-footer:before, .mui-card-header:after {
+  
+    background-color:transparent;
+}

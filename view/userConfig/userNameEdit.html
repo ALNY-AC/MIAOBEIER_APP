@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="x-rim-auto-match" content="none">
+        <title>昵称</title>
+
+        <link rel="stylesheet" type="text/css" href="../../vendor/mui/css/mui.min.css" />
+    </head>
+
+    <body>
+
+        <header id="header" class="mui-bar mui-bar-nav" style="background: black;color:white">
+
+            <h1 class="mui-title">修改用户名</h1>
+            <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>
+            </button>
+
+        </header>
+
+        <div class="mui-content">
+            <div class="mui-input-row">
+
+                <input type="text" class="mui-input-clear" placeholder="请输入用户名" id="userName">
+            </div>
+            <div class="mui-button-row">
+                <button type="button" class="mui-btn mui-btn-primary" id="save">保存</button>
+
+            </div>
+        </div>
+
+        <!---->
+        <script src="../../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).on("click", "#save", function() {
+                var userName = $("#userName").val();
+                console.log(userName)
+                $.post(config.getGroup() + "User/save", {
+                    token: localStorage.token,
+                    user_name: userName,
+                }, function(data) {
+
+                    data = JSON.parse(data);
+                    if(data.result == "success") {
+
+                        mui.back();
+                    } else {
+                        mui.toast("修改失败，请检查网络设置！");
+                    }
+                })
+            })
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>搜索</title>
+        <!---->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/queryGoods/queryGoods.css" />
+        <link rel="stylesheet" type="text/css" href="../vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+        <style>
+            .title {
+                /*margin: 20px 15px 10px;*/
+                color: #6d6d72;
+                font-size: 15px;
+            }
+            
+            .oa-contact-cell.mui-table .mui-table-cell {
+                padding: 11px 0;
+                vertical-align: middle;
+            }
+            
+            .oa-contact-cell {
+                position: relative;
+                margin: -11px 0;
+            }
+            
+            .oa-contact-avatar {
+                width: 75px;
+            }
+            
+            .oa-contact-avatar img {
+                border-radius: 50%;
+            }
+            
+            .oa-contact-content {
+                width: 100%;
+            }
+            
+            .oa-contact-name {
+                margin-right: 20px;
+            }
+            
+            .oa-contact-name,
+            oa-contact-position {
+                float: left;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .mui-row.mui-fullscreen > [class*="mui-col-"] {
+                height: 100%;
+            }
+            
+            .mui-col-xs-3,
+            .mui-control-content {
+                overflow-y: auto;
+                height: 100%;
+            }
+            
+            .mui-segmented-control .mui-control-item {
+                line-height: 50px;
+                width: 100%;
+            }
+            
+            .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+                background-color: #fff;
+            }
+            
+            body {
+                background-color: #fff;
+            }
+            
+            .info {
+                width: 100%;
+                text-align: center;
+                color: #777;
+            }
+            
+            #tagSosoApp {
+                padding: 10px;
+                position: absolute;
+                top: 50px;
+                width: 100%;
+                min-height: 200px;
+                background-color: #fff;
+                border-bottom: #ccc solid 1px;
+                text-align: center;
+            }
+            
+            .tagBox {
+                text-align: justify;
+            }
+            
+            .tag {
+                display: inline-block;
+                padding: 5px;
+            }
+            
+            .mui-content {
+                background-color: #fff;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <input type="search" class="mui-input-clear" style="background-color: #fff;" id="get" placeholder="搜索……">
+        </div>
+
+        <!--14.商品分类显示-->
+        <div id="queryGoodsSosoApp" class="mui-content">
+            <!--
+            <div class="miaobeier_remen">
+                <div class="remen">
+                    <span>热门</span>
+                </div>
+                <div class="jiage">
+                    <sapn>价格</sapn>
+                </div>
+            </div>
+            <div class="miaobeier_xian"></div>-->
+
+            <div v-if="!body.list">
+                <div class="info">没找到商品</div>
+            </div>
+            <div v-else>
+
+                <div class="miaobeier_shangpin">
+                    <ul>
+                        <li v-for='(item,index) in body.list' @click='open(index)'>
+                            <div :data-goods-id='item.goods_id'>
+                                <img :src="'http://120.78.162.200'+item.head_img" alt="">
+                                <span class="mingzi">{{item.title}}</span>
+                                <br>
+                                <span class="miaobeier_price">￥{{item.price}}起</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="tagSoSoApp" class="mui-content">
+
+            <p>热门搜索：</p>
+
+            <div class="tagBox">
+
+                <span v-for="(item,index) in body.list" @click='tagsoso(index)' class="tag">
+                    <span type="button" class="mui-btn mui-btn-outline tagBtn">{{item.title}}</span>
+                </span>
+            </div>
+        </div>
+
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+
+        <!--dist-->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <!---->
+
+        <script>
+            $('#tagSoSoApp').hide();
+
+            mui.init({
+                swipeBack: true //启用右滑关闭功能
+            });
+
+            //          queryGoodsSosoApp = dateBuilder.init({
+            //              url: "UserV0_1/Goods/queryGoods",
+            //              type: "post",
+            //              el: "#queryGoodsSosoApp",
+            //          });
+
+            //  ========== 
+            //  = Banner = 
+            //  ========== 
+            var queryGoodsSosoApp = new Vue({
+                el: '#queryGoodsSosoApp',
+                data: {
+                    body: {
+                        list: []
+                    },
+                },
+                methods: {
+                    open: function(index) {
+
+                        localStorage.goods_id = this.body.list[index].goods_id;
+                        //						window.location.href="goodsInfo.html";
+                        //						return;
+                        mui.openWindow({
+                            url: "goodsInfo.html",
+                            id: "goodsInfo",
+                            createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                            show: {
+                                autoShow: true, //页面loaded事件发生后自动显示，默认为true
+                                //aniShow:animationType,//页面显示动画，默认为”slide-in-right“；
+                                //duration:animationTime//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+                            },
+                            waiting: {
+                                autoShow: true, //自动显示等待框，默认为true
+                                title: '正在加载...', //等待对话框上显示的提示内容
+                                options: {
+                                    //width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+                                    // height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+                                }
+                            }
+                        })
+
+                    },
+                    update: function() {
+                        var link = $('#get').val();
+
+                        var arr = link.split(/\s+/);
+
+                        for(var x in arr) {
+                            arr[x] = '%' + arr[x] + '%'
+                        }
+                        var data = {
+                            "goods_name_list": arr
+                        };
+                        $.post(config.getGroup() + 'Goods/queryGoods', data, function(result) {
+                            result = JSON.parse(result);
+
+                            $('#tagSoSoApp').hide();
+                            $('#queryGoodsSosoApp').show();
+                            if(result.result == 'success') {
+                                queryGoodsSosoApp.body.list = result['message'];
+                            } else {
+                                queryGoodsSosoApp.body.list = [];
+                            }
+
+                        });
+
+                    }
+                }
+
+            });
+
+            //  ========== 
+            //  = 热搜 = 
+            //  ========== 
+
+            // tagSoSoApp = dateBuilder.init({
+            // 	url: "UserV0_1/Tag/getList",
+            // 	type: "post",
+            // 	el: "#tagSoSoApp",
+            // });
+
+            var tagSoSoApp = new Vue({
+                el: '#tagSoSoApp',
+                data: {
+                    body: {
+                        list: []
+                    }
+                },
+                methods: {
+                    tagsoso: function(index) {
+                        var title = this.body.list[index].title;
+
+                        $.post(config.getGroup() + 'Goods/queryGoods', {
+                            "goods_name_list": [
+                                "%" + title + "%"
+                            ]
+                        }, function(result) {
+                            result = JSON.parse(result);
+
+                            if(result.result == 'success') {
+
+                                queryGoodsSosoApp.body.list = result['message'];
+
+                            } else {
+                                queryGoodsSosoApp.body.list = [];
+                            }
+
+                            $('#tagSoSoApp').hide();
+                            $('#queryGoodsSosoApp').show();
+
+                        });
+
+                        $('#tagSoSoApp').hide();
+                        $('#queryGoodsSosoApp').show();
+
+                    },
+                    update: function() {
+                        var url = config.getGroup() + "Tag/getList"
+                        var _this = this;
+                        $.post(url, function(result) {
+
+                            result = JSON.parse(result);
+                            _this.body.list = result.message;
+
+                        });
+
+                    }
+                }
+
+            });
+
+            $(document).on('keydown ', '#get', function(event) {
+
+                if(event.keyCode == 13) {
+
+                    var link = $(this).val();
+
+                    //  ========== 
+                    //  = 查询 = 
+                    //  ========== 
+
+                    //  ========== 
+                    //  = Banner = 
+                    //  ========== 
+                    var arr = link.split(/\s+/);
+
+                    for(x in arr) {
+                        arr[x] = '%' + arr[x] + '%'
+                    }
+
+                    //                  queryGoodsSosoApp.data = {
+                    //                      "goods_name_list": arr
+                    //                  };
+                    queryGoodsSosoApp.update();
+                    $('#tagSoSoApp').hide();
+                    $('#queryGoodsSosoApp').show();
+
+                }
+
+            });
+
+            $(document).on('focus', '#get', function(event) {
+
+                $('#tagSoSoApp').show();
+                $('#queryGoodsSosoApp').hide();
+                tagSoSoApp.update();
+
+            });
+
+            $(document).on('blur', '#get', function(event) {
+
+            });
+
+            //          $(document).on('click', '.openGoodsInfo', function() {
+
+            //          })
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,93 @@
+/* 底部导航栏的样式 */
+
+nav a span.mui-icon.icon-fangzi-copy {
+    font-size: 30px;
+}
+
+nav a span.mui-icon.mui-icon-email {
+    font-size: 37px;
+    top: -2px;
+}
+
+nav a span.mui-icon.icon-eye {
+    font-size: 35px;
+}
+
+nav a span.mui-icon.icon-gouwuche {
+    font-size: 27px;
+}
+
+nav a span.mui-icon.icon-yonghu1 {
+    font-size: 25px;
+}
+
+nav.mui-bar.mui-bar-tab {
+    background: black;
+}
+
+nav.mui-bar-tab.mui-bar .mui-tab-item.mui-active {
+    color: #ffffff;
+}
+
+
+/* 房子页的顶部导航栏的样式 */
+
+.mui-scroll-wrapper.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted .mui-scroll a {
+    color: black;
+    margin-left: 1px;
+    padding-bottom: 5px;
+}
+
+.mui-scroll-wrapper.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted .mui-scroll a.mui-active {
+    color: white;
+    background: black;
+}
+
+.mui-scroll-wrapper.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted .mui-scroll {
+    background: white;
+}
+
+.mui-bar.mui-bar-nav {
+    background: black;
+    box-shadow: none;
+    ;
+}
+
+.mui-bar.mui-bar-nav .mui-title {
+    color: white;
+    color: white;
+    background: black;
+}
+
+.mui-bar.mui-bar-nav .mui-icon {
+    color: white;
+}
+
+
+/* .mui-slider-item.mui-control-content .mui-scroll-wrapper .mui-scroll .mui-slider.lbt .mui-slider-group.mui-slider-loop{
+    margin-top: 10px;
+} */
+
+#goodsIndexApp .mui-slider-group.mui-slider-loop {
+    margin-top: 10px;
+}
+
+#pages {
+    background: white;
+}
+
+#pages .mui-tab-item.mui-active {
+    color: black;
+}
+
+#pages .pages-icon4 {
+    font-size: 15px;
+}
+
+#pages .mui-tab-item .mui-icon {
+    top: 3px;
+    width: 24px;
+    height: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>品牌详情 </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!--标准mui.css-->
+        <link rel="stylesheet" type="text/css" href="../vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/brandInfo/brandInfo.css" />
+        <link rel="stylesheet" type="text/css" href="../dist/style.css" />
+
+        <style>
+            .lxkf {
+                background-color: transparent;
+                color: #ccc;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="mui-content" id="brandApp" style="padding-top:40px;display:none">
+
+            <div class="mui-navbar-inner mui-bar mui-bar-nav">
+                <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                    <span class="mui-icon mui-icon-left-nav"></span>
+                </button>
+                <h1 class="mui-center mui-title">{{brand_info.brand_title}}</h1>
+                <a class="mui-icon mui-icon-redo mui-pull-right"></a>
+            </div>
+
+            <div class="head">
+                <div class="head-lg-img">
+                    <img :src="getLgImg()" />
+                </div>
+                <div class="head-info">
+                    <div class="mui-row">
+                        <div class="mui-col-xs-4 head-img">
+                            <img :src="getHeadImg()" />
+                        </div>
+                        <div class="mui-col-xs-8 brand-title">{{brand_info.brand_title}}</div>
+                    </div>
+                </div>
+                <div class="brand-info">
+                    {{brand_info.info}}
+                </div>
+            </div>
+            <div class="mui-row top-tool">
+                <div class="mui-col-xs-6 tool-item">
+                    热门
+                </div>
+                <div class="mui-col-xs-6 tool-item">
+                    价格
+                </div>
+            </div>
+
+            <div class="mui-row" style="background-color:#fff">
+
+                <div class="mui-col-xs-6" v-for='(item,index) in goods_info'>
+                    <div class="mui-card goods-item">
+                        <!--<div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>-->
+                        <div class="mui-card-header mui-card-media" :style="'background-image: url('+getGoodsHeadImg(index)+')'"></div>
+                        <div class="mui-card-content">
+                            <div class="mui-card-content-inner">
+                                <div class="mui-row">
+                                    <div class="mui-col-xs-5 mui-card-media mui-ellipsis">
+                                        <p style="color: #333;;font-size:11px">{{item.title}}</p>
+                                    </div>
+                                    <div class="mui-col-xs-7">
+                                        <a class="mui-card-link mui-pull-right" style='color:#f00;font-size:1px'>￥{{item.price}}起</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.js"></script>
+        <script src="../vendor/mui/js/mui.pullToRefresh.material.js"></script>
+        <script src="../vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+        <!-- dist -->
+        <script src="../dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            //================================
+            //================================
+            //================================
+            //================================
+            //================================
+            //品牌app
+            var brandApp = new Vue({
+                el: '#brandApp',
+                data: {
+                    brand_info: [],
+                    goods_info: []
+                },
+                methods: {
+
+                    update: function(f) {
+
+                        if(localStorage.brand_id == null || localStorage.brand_id == '') {
+
+                            /**
+                             * 因为没有id，所以要做处理
+                             */
+
+                        }
+
+                        var _this = this;
+                        $.get(config.getGroup() + "Brand/getOne", {
+                            id: 28,
+                        }, function(res) {
+
+                            res = JSON.parse(res);
+                            _this.brand_info = res.brand_info;
+                            _this.goods_info = res.goods_info;
+                            console.log(res);
+
+                            if(f != null) {
+                                f();
+                            }
+                        })
+
+                    },
+                    openGoods: function(index) {
+
+                    },
+                    getHeadImg: function(index) {
+                        //获得头像
+                        return config.getIp() + this.brand_info.head_img;
+                    },
+                    getLgImg: function() {
+                        //获得大图
+                        return config.getIp() + this.brand_info.max_img;
+                    },
+                    getGoodsHeadImg: function(index) {
+                        //商品头像
+                        return config.getIp() + this.goods_info[index].head_img;
+                    }
+
+                }
+            })
+            brandApp.update(function() {
+                $('#brandApp').show();
+                localStorage.removeItem("bran_id");
+            });
+        </script>
+
+    </body>
+
+</html>

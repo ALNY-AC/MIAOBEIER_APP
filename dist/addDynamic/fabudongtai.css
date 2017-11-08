@@ -1,0 +1,69 @@
+.fabu_top{
+    width: 100%;
+    height: 50px;
+    background: black;
+    text-align: center;
+    line-height: 50px;
+}
+.fabu_font1{
+    font-size: 20px;
+    color: white;
+}
+.fabu_back{
+    float: left;
+    margin-left: 3%;
+    color: white;
+}
+.fabu_font2{
+    float: right;
+    margin-right: 3%;
+    font-size: 17px;
+    color: #7a7a7a;
+}
+.fabu_fenxiang{
+    width: 100%;
+    background: white;
+}
+.fabu_bao1{
+    width: 96%;
+	height: 350px;
+	background:white;
+	margin-left: 2%;
+    padding-top: 3%;
+}
+.fabu_xinde{
+    font-size: 20px;
+    color: #c1c1c1;
+}
+.fabu_neirong{
+    border: 0;
+}
+.fabu_line{
+    width: 100%;
+    border: 1px solid #c1c1c1;
+    margin-top: 15%;
+}
+.fabu_zishu{
+    float: right;
+    padding-bottom: -5%;
+    color: #c1c1c1;
+}
+.fabu_jiahao{
+    /*margin-top: 3%;*/
+    font-size: 250px;
+}
+#fabu_tianjiashangpin{
+    margin-top: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+#tianjiashangpin{
+    font-size: 20px;
+    color: black;
+}
+
+@media screen and (max-width: 360px) {
+    .fabu_bao1{
+        height: 320px;
+    }
+}

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>miaobeier</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!--标准mui.css-->
+        <link rel="stylesheet" type="text/css" href="vendor/mui/css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="vendor/mui/mui-app.css" />
+        <link rel="stylesheet" type="text/css" href="dist/classPage/classPage.css" />
+        <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="vendor/iconfont/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="dist/style.css" />
+        <style type="text/css">
+            .fk {
+                width: 100%;
+                height: 100px;
+                background-color: #ff0;
+                margin-bottom: 20px;
+            }
+            
+            .box {
+                width: 100%;
+                height: 100px;
+                background-color: #0000ff;
+            }
+            
+            .lxkf {
+                background-color: transparent;
+                color: #ccc;
+            }
+            
+            .mui-content a {
+                color: #8F8F94;
+            }
+            
+            .mui-card-footer:before,
+            .mui-card-header:after {
+                background-color: #fff;
+            }
+            
+            .mui-card-footer {
+                padding: 0 15px;
+            }
+            
+            .mui-table-view .mui-media-object {
+                line-height: 42px;
+                max-width: 42px;
+                height: auto;
+            }
+            
+            .shop-bag-box {
+                width: 100%;
+                bottom: 51px;
+                position: fixed;
+                padding: 2px 0;
+                background-color: #ffffff;
+            }
+            
+            .content {
+                color: #777;
+                padding: 10px;
+            }
+            
+            .img-box img {
+                padding: 5px;
+            }
+            
+            #goTop {
+                width: 50px;
+                height: 50px;
+                background-color: #000000;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 99999;
+                display: none;
+            }
+            
+            #scroll1 {}
+            
+            .my-list {
+                position: relative;
+                background-color: #ffffff;
+                margin-bottom: 20px;
+                padding: 10px 0;
+            }
+            
+            .mui-bar-tab .mui-tab-item .mui-icon {
+                top: 0;
+                width: 24px;
+                height: 24px;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="mui-bar mui-bar-tab">
+            <a class="mui-tab-item mui-active" href="#page-1">
+                <span class="mui-icon iconfont icon-fangzi-copy"></span>
+            </a>
+            <a class="mui-tab-item" href="#page-2">
+                <span class="mui-icon mui-icon-email"> </span>
+            </a>
+            <a class="mui-tab-item" href="#page-3">
+                <span class="mui-icon iconfont icon-eye"></span>
+            </a>
+            <a class="mui-tab-item" href="#page-4">
+                <span class="mui-icon iconfont icon-gouwuche"></span>
+            </a>
+            <a class="mui-tab-item" href="#page-5">
+                <span class="mui-icon iconfont icon-yonghu1"></span>
+            </a>
+
+        </nav>
+
+        <a id="goTop" href='#top'></a>
+        <div class="mui-content">
+            <header class="mui-bar mui-bar-nav">
+                <h1 class="mui-title" id="top">MIAOBELER</h1>
+                <a class="mui-icon iconfont icon-iconfontfangdajing mui-pull-right" onclick="ow('view/queryGoods.html')"></a>
+            </header>
+            <div id="page-1" class="mui-control-content mui-slider mui-fullscreen   mui-active">
+
+                <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                    <div class="mui-scroll">
+                        <a class="mui-control-item mui-active" href="#item1mobile">
+                            首页
+                        </a>
+                        <a class="mui-control-item" href="#item2mobile">
+                            时尚套装
+                        </a>
+                        <a class="mui-control-item" href="#item3mobile">
+                            热销新品
+                        </a>
+                        <a class="mui-control-item" href="#item4mobile">
+                            潮流童装
+                        </a>
+                        <a class="mui-control-item" href="#item5mobile">
+                            时尚套装
+                        </a>
+                        <a class="mui-control-item" href="#item6mobile">
+                            热销新品
+                        </a>
+                    </div>
+                </div>
+                <div class="mui-slider-group" id="goodsIndexApp">
+
+                    <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+                        <div id="scroll1" class="mui-scroll-wrapper ">
+                            <div class="mui-scroll">
+                                <div class="mui-slider lbt">
+                                    <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/asdfsadf.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                    <div class="mui-card" @click='open(index)'>
+                                        <div class="mui-card-header mui-card-media" @click='open(index)' :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                        <div class="mui-card-content" @click='open(index)'>
+                                            <div class="mui-card-content-inner" @click='open(index)'>
+                                                <p style="color: #333;" @click='open(index)'>{{item.title}}</p>
+                                                <a class="mui-card-link mui-pull-right" @click='open(index)' style='color:#f00'>￥{{item.price}}起</a>
+                                                <!-- <p>Posted on January 18, 2016</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item2mobile" class="mui-slider-item mui-control-content">
+                        <div class="mui-scroll-wrapper">
+                            <div class="mui-scroll">
+                                <div class="mui-slider lbt">
+                                    <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/asdfsadf.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                    <div class="mui-card">
+                                        <div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                        <div class="mui-card-content">
+                                            <div class="mui-card-content-inner">
+                                                <p style="color: #333;">{{item.title}}</p>
+                                                <a class="mui-card-link mui-pull-right" style='color:#f00'>￥{{item.price}}起</a>
+                                                <!-- <p>Posted on January 18, 2016</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item3mobile" class="mui-slider-item mui-control-content">
+                        <div class="mui-scroll-wrapper">
+                            <div class="mui-scroll">
+                                <div class="mui-slider lbt">
+                                    <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/asdfsadf.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                    <div class="mui-card">
+                                        <div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                        <div class="mui-card-content">
+                                            <div class="mui-card-content-inner">
+                                                <p style="color: #333;">{{item.title}}</p>
+                                                <a class="mui-card-link mui-pull-right" style='color:#f00'>￥{{item.price}}起</a>
+                                                <!-- <p>Posted on January 18, 2016</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item4mobile" class="mui-slider-item mui-control-content">
+                        <div class="mui-scroll-wrapper">
+                            <div class="mui-scroll">
+                                <div class="mui-slider lbt">
+                                    <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/asdfsadf.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                    <div class="mui-card">
+                                        <div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                        <div class="mui-card-content">
+                                            <div class="mui-card-content-inner">
+                                                <p style="color: #333;">{{item.title}}</p>
+                                                <a class="mui-card-link mui-pull-right" style='color:#f00'>￥{{item.price}}起</a>
+                                                <!-- <p>Posted on January 18, 2016</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item5mobile" class="mui-slider-item mui-control-content">
+                        <div class="mui-scroll">
+                            <div class="mui-slider lbt">
+                                <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                    <!--支持循环，需要重复图片节点-->
+                                    <div class="mui-slider-item mui-slider-item-duplicate">
+                                        <a href="#">
+                                            <img src="dist/img/asdfsadf.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="dist/img/xwyg.jpg" />
+                                        </a>
+                                    </div>
+                                    <!--支持循环，需要重复图片节点-->
+                                    <div class="mui-slider-item mui-slider-item-duplicate">
+                                        <a href="#">
+                                            <img src="dist/img/xwyg.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                <div class="mui-card">
+                                    <div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                    <div class="mui-card-content">
+                                        <div class="mui-card-content-inner">
+                                            <p style="color: #333;">{{item.title}}</p>
+                                            <a class="mui-card-link mui-pull-right" style='color:#f00'>￥{{item.price}}起</a>
+                                            <!-- <p>Posted on January 18, 2016</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="item6mobile" class="mui-slider-item mui-control-content">
+                        <div class="mui-scroll-wrapper">
+                            <div class="mui-scroll">
+                                <div class="mui-slider lbt">
+                                    <div class="mui-slider-group mui-slider-loop" style="height:230px;position: relative;">
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/asdfsadf.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/TB2KALZdXXXXXbAXpXXXXXXXXXX-880734502.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="mui-slider-item">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                        <!--支持循环，需要重复图片节点-->
+                                        <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <a href="#">
+                                                <img src="dist/img/xwyg.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="goods-tj-item" v-for="(item,index) in items" @click='open(index)'>
+                                    <div class="mui-card">
+                                        <div class="mui-card-header mui-card-media" :style="'height:40vw;background-image:url('+getImg(index)+')'"></div>
+                                        <div class="mui-card-content">
+                                            <div class="mui-card-content-inner">
+                                                <p style="color: #333;">{{item.title}}</p>
+                                                <a class="mui-card-link mui-pull-right" style='color:#f00'>￥{{item.price}}起</a>
+                                                <!-- <p>Posted on January 18, 2016</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="page-2" class="mui-control-content">
+                <header class="mui-bar mui-bar-nav">
+                    <h1 class="mui-title">分类</h1>
+                </header>
+                <div class="mui-content">
+                    <div class="class-panel">
+                        <div class="mui-row">
+                            <div class="mui-col-xs-3">
+                                <div class="class-left" id="class1App">
+                                    <div class="class-item-1" :id='item.class_id' v-for='(item,index) in items' @click='showClass2(index)'>{{item.title}}</div>
+                                </div>
+                            </div>
+                            <div class="mui-col-xs-9">
+                                <div class="class-right">
+                                    <img src="dist/img/l1.jpg" alt="">
+
+                                    <div class="mui-row" id="brandIndexApp">
+                                        <!-- 品牌 -->
+                                        <div class="brand-panel">
+
+                                            <div class="brand-panel-title">热门品牌</div>
+                                            <div class="mui-content">
+                                                <div class="mui-row">
+                                                    <div class="mui-col-xs-4 brand-item" :id='item.id' v-for='(item,index) in items'>
+                                                        <!-- <img src="" alt=""> -->
+                                                        <span>{{item.brand_title}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mui-row" id="class2App">
+                                        <div class="class-2-panel">
+                                            <div class="class-2-panel-title">分类</div>
+
+                                            <div class="mui-content">
+                                                <div class="mui-row">
+                                                    <div class="mui-col-xs-4 class-2-item" v-for='(item,index) in items'>
+                                                        <img :src="getImg(index)" alt="">
+                                                        <span>{{item.title}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="page-3" class="mui-control-content">
+                <header class="mui-bar mui-bar-nav">
+                    <h1 class="mui-title">发现</h1>
+                    <a class="mui-icon mui-icon-compose mui-pull-right" onclick="ow('view/addDynamic.html')"></a>
+                </header>
+                <div class="mui-content" id="dynamicIndexApp">
+                    <!-- 模板由此开始 -->
+                    <div class="mui-card" v-for='(item,index) in items'>
+                        <div class="mui-pull-right">
+                            <span class="mui-icon mui-icon-more"></span>
+                        </div>
+                        <div class="mui-card-header mui-card-media">
+                            <img :src="getUserHead(index)" />
+                            <div class="mui-media-body">
+                                {{item.user_name}}
+                                <p>发表于 {{getTime(index)}}</p>
+                            </div>
+                            <!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
+                            <h2>小M</h2>
+                            <p>发表于 2016-06-30 15:30</p>-->
+
+                        </div>
+
+                        <div class="mui-card-content">
+
+                            <div class="mui-row">
+                                <div class="content">
+                                    {{item.content}}
+                                </div>
+
+                            </div>
+
+                            <div class="mui-row">
+                                <div class="mui-col-xs-4 img-box">
+                                    <img src="dist/img/xwyg.jpg" alt="" width="100%" />
+                                </div>
+                                <div class="mui-col-xs-4 img-box">
+                                    <img src="dist/img/xwyg.jpg" alt="" width="100%" />
+                                </div>
+                                <div class="mui-col-xs-4 img-box">
+                                    <img src="dist/img/xwyg.jpg" alt="" width="100%" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mui-card-footer">
+                            <a class="mui-card-link" style='text-align:center'>
+                                <span class="fa fa-thumbs-o-up"></span>5
+                            </a>
+                            <a class="mui-card-link" style='text-align:center'>
+                                <span class="iconfont icon-z-message"></span>评论
+                            </a>
+                            <a class="mui-card-link" style='text-align:center'>
+                                <span class="mui-icon iconfont icon-fenxiang1"></span>转发
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 模板由此结束end/ -->
+
+                </div>
+            </div>
+            <div id="page-4" class="mui-control-content">
+                <header class="mui-bar mui-bar-nav">
+                    <h1 class="mui-title">购物袋</h1>
+                </header>
+                <div class="mui-content" id="shopBagIndexApp">
+
+                    <ul class="mui-table-view" style="margin-bottom:10px;background:transparent">
+                        <li class="mui-table-view-cell mui-media" style="margin-bottom:10px;background:#fff" @longtap='del(index)' v-for="(item,index) in items">
+
+                            <a href="javascript:;">
+                                <div class="mui-checkbox mui-pull-right" style='top:-8px;right:-20px'>
+                                    <label> </label>
+                                    <input v-model='item.ischeck' type="checkbox">
+                                </div>
+                                <img class="mui-media-object mui-pull-left" style='max-width:100px;width:100px;height:100px' :src="getImg(index)">
+                                <div class="mui-media-body">
+                                    <p class='mui-ellipsis' style="color:#000;font-size:16px;">{{item.title}}</p>
+                                    <p>&nbsp;&nbsp;</p>
+                                    <p>&nbsp;&nbsp;</p>
+                                </div>
+
+                                <p class='mui-ellipsis ' style="color:#000;font-size:16px;bottom:0;display:inline-block">￥{{item.price}}</p>
+
+                                <div class="mui-numbox mui-pull-right" data-numbox-step='1' data-numbox-min='0' data-numbox-max='100'>
+
+                                    <button class="mui-btn mui-numbox-btn-minus" @click='subNum(index)' type="button">-</button>
+                                    <input class="mui-numbox-input" type="number" v-model='item.num' />
+                                    <button class="mui-btn mui-numbox-btn-plus" @click='addNum(index)' type="button">+</button>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="shop-bag-box">
+                        <div class="mui content">
+                            <div class="mui-row">
+                                <div class="mui-col-xs-12">
+                                    <span class="mui-input-row mui-checkbox mui-pull-left">
+                                        <label>全选</label>
+                                        <input @click='checkall()' v-model='isall' type="checkbox">
+                                    </span>
+                                    <span class="mui-pull-right">
+                                        <span style="display:inline-block;line-height:44px;color:#f00"> 总计：￥{{sumMoney}} </span>
+                                        <button type="button" style="display:inline-block;background-color:#000;color:#fff;padding:10px 20px" @click='postOrder()' class="mui-btn mui-btn-outlined">去结算</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="page-5" class="mui-control-content ">
+                <header id="header" class="mui-bar mui-bar-nav">
+                    <h1 class="mui-title">个人中心</h1>
+                    <a class="mui-icon mui-icon-gear mui-pull-right" onclick="ow('view/userConfig.html')"></a>
+                </header>
+                <div class="mui-content">
+
+                    <ul id="userInfoCenter" class="mui-table-view mui-table-view-chevron" onclick="ow('view/userInfo.html')" style="margin-bottom: 10px;">
+                        <li class="mui-table-view-cell mui-media">
+                            <a class="mui-navigate-right" href="#account">
+                                <img class="mui-media-object mui-pull-left head-img" id="head-img" style="border-radius:50%;" src="dist/img/xwyg.jpg">
+                                <div class="mui-media-body">
+                                    {{info.user_name}}
+                                    <p class='mui-ellipsis'>账号:{{info.user_id}}</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell" onclick="ow('view/userOrder.html?All')">
+                            <a class="mui-navigate-right">
+                                <span class="mui-badge mui-badge-danger lxkf">所有订单</span>
+                                我的订单
+                            </a>
+                        </li>
+                    </ul>
+
+                    <nav class="mui-bar mui-bar-tab my-list" id="pages">
+                        <a class="mui-tab-item" onclick="ow('view/userOrder.html?1')" href="javascript:;">
+                            <span class="mui-icon iconfont icon-yinxingqia2 pages-icon1"></span>
+                            <span class="mui-tab-label">待付款</span>
+                        </a>
+                        <a class="mui-tab-item" onclick="ow('view/userOrder.html?2')" href="javascript:;">
+                            <span class="mui-icon iconfont icon-ziyuan pages-icon2"></span>
+                            <span class="mui-tab-label">待发货</span>
+                        </a>
+                        <a class="mui-tab-item" onclick="ow('view/userOrder.html?3')" href="javascript:;">
+                            <span class="mui-icon iconfont icon-daishouhuo pages-icon3"></span>
+                            <span class="mui-tab-label">待收货</span>
+                        </a>
+                        <a class="mui-tab-item" onclick="ow('view/userOrder.html?4')" href="javascript:;">
+                            <span class="mui-icon iconfont icon-jiaoyichenggong pages-icon4"></span>
+                            <span class="mui-tab-label">交易成功</span>
+                        </a>
+                        <a class="mui-tab-item" href="javascript:;">
+                            <span class="mui-icon iconfont icon-icon-test pages-icon5"></span>
+                            <span class="mui-tab-label">退款退货</span>
+                        </a>
+                    </nav>
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell" onclick="ow('view/wodeshoucang.html')">
+                            <a class="mui-navigate-right">
+                                我的收藏
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell">联系客服
+                            <span class="mui-badge lxkf">1400-000-0000</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right">
+                                服务热线
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right">
+                                意见和反馈
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right">
+                                给我评分
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="vendor/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="vendor/mui/js/mui.pullToRefresh.js"></script>
+    <script src="vendor/mui/js/mui.pullToRefresh.material.js"></script>
+    <script src="vendor/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="vendor/jquery/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+    <!--dist-->
+    <script src="dist/config/config.js" type="text/javascript" charset="utf-8"></script>
+    <script src="dist/index/apps.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        isLogin();
+
+        function isLogin() {
+            console.warn('token');
+            console.warn(localStorage.token);
+
+            var url = config.getUrl() + "/UserV0_1/Login/isLogin";
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    "token": localStorage.token
+                },
+                timeout: 1000,
+                success: function(result) {
+                    result = JSON.parse(result);
+                    console.log(result.result);
+
+                    if(result.result == 'success') {
+                        // 密匙验证正确
+                        // mui.toast("验证成功~");
+                    }
+                    if(result.result == 'error') {
+                        // 密匙验证错误，需要登录
+                        window.location.href = 'view/login.html';
+
+                    }
+                },
+                error: function(d) {
+                    // mui.toast("未联网~");
+                }
+            });
+            return;
+
+        }
+
+        mui.init({
+            swipeBack: false //启用右滑关闭功能
+        });
+        //获得slider插件对象
+        var gallery = mui('.lbt');
+        gallery.slider({
+            interval: 1000 //自动轮播周期，若为0则不自动播放，默认为0；
+        });
+        (function($) {
+            //阻尼系数
+            var deceleration = mui.os.ios ? 0.003 : 0.0009;
+            $('.mui-scroll-wrapper').scroll({
+                bounce: false,
+                indicators: true, //是否显示滚动条
+                deceleration: deceleration
+            });
+            $.ready(function() {
+
+                //循环初始化所有下拉刷新，上拉加载。
+
+                var list = document.querySelectorAll('.mui-slider-group .mui-scroll');
+
+                $.each(list, function(index, pullRefreshEl) {
+                    $(pullRefreshEl).pullToRefresh({
+                        down: {
+                            callback: function() {
+                                var self = this;
+
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullDownToRefresh();
+                            }
+                        },
+                        up: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullUpToRefresh();
+                            }
+                        }
+                    });
+                });
+
+                // 
+
+                $.each($('#tabbar-with-contact'), function(index, pullRefreshEl) {
+                    $(pullRefreshEl).pullToRefresh({
+                        down: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullDownToRefresh();
+                            }
+                        },
+                        up: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullUpToRefresh();
+                            }
+                        }
+                    });
+                });
+
+                $.each($('#dynamicIndexApp'), function(index, pullRefreshEl) {
+                    $(pullRefreshEl).pullToRefresh({
+                        down: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+
+                                dynamicIndexApp.update(function() {
+                                    self.endPullDownToRefresh();
+                                });
+
+                            }
+                        },
+                        up: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullUpToRefresh();
+                            }
+                        }
+                    });
+                });
+                // shopBagIndexApp
+                $.each($('#shopBagIndexApp'), function(index, pullRefreshEl) {
+                    $(pullRefreshEl).pullToRefresh({
+                        down: {
+                            callback: function() {
+                                var self = this;
+                                console.log(index);
+                                console.log(pullRefreshEl);
+                                self.endPullDownToRefresh();
+                                shopBagIndexApp.update(function() {
+                                    self.endPullDownToRefresh();
+                                });
+                            }
+                        }
+                    });
+                });
+                //             
+
+            });
+        })(mui);
+    </script>
+
+</html>

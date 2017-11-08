@@ -1,0 +1,76 @@
+.dingbu {
+    width: 100%;
+    height: 50px;
+    background: black;
+}
+
+#gotop {
+    margin-top: -40px;
+}
+
+#gotop .mui-input-clear {
+    background: white;
+    width: 98%;
+    margin-left: 1%;
+}
+
+#gotop * {}
+
+.miaobeier_remen {
+    width: 96%;
+    /*height: 50px;*/
+    margin-left: 2%;
+}
+
+.miaobeier_remen {}
+
+.remen {
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    border-right: 1px solid gray;
+}
+
+.jiage {
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: right;
+}
+
+.miaobeier_xian {
+    width: 100%;
+    border: 0.1px solid gray;
+}
+
+.miaobeier_shangpin {
+    width: 95%;
+    height: 100px;
+    margin-left: 2.5%;
+    /*background: red;*/
+}
+
+.miaobeier_shangpin li {
+    width: 46%;
+    /*height: 100px;*/
+    /*background: yellow;*/
+    float: left;
+    margin-left: 3%;
+    list-style: none;
+}
+
+.miaobeier_shangpin li img {
+    width: 100%;
+}
+
+.mingzi {
+    font-size: 15px;
+}
+
+.miaobeier_price {
+    color: red;
+    float: right;
+}
